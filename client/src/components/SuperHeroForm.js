@@ -8,18 +8,20 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
-export default function AddSuperHeroForm({ open, handleClose, handleAddHero }) {
+export default function SuperHeroForm({ open, handleClose, handleAddHero }) {
   // DRY THIS
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
 
   function onAddHero() {
-    handleAddHero({
-      firstName,
-      lastName,
-      email,
-    });
+    handleAddHero([
+      {
+        firstName,
+        lastName,
+        email,
+      },
+    ]);
 
     setFirstName("");
     setLastName("");
