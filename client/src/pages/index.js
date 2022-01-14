@@ -15,6 +15,10 @@ export default function HomePage() {
     setHeroesToAdd([...hero, ...heroesToAdd]);
   }
 
+  function handleDeleteHero(hero) {
+    setHeroesToAdd(heroesToAdd.filter(h => h.email !== hero.email));
+  }
+
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -28,8 +32,11 @@ export default function HomePage() {
       </Box>
 
       <Box sx={{ padding: "24px" }}>
-        <ActionButtons handleAddHero={handleAddHero} />
-        <SuperHeroList list={heroesToAdd} />
+        <ActionButtons
+          handleAddHero={handleAddHero}
+          handleDeleteHero={handleDeleteHero}
+        />
+        <SuperHeroList list={heroesToAdd} handleDeleteHero={handleDeleteHero} />
       </Box>
     </div>
   );

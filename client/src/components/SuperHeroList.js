@@ -7,7 +7,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 
-export default function SuperHeroList({ list }) {
+export default function SuperHeroList({ list, handleDeleteHero }) {
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -26,7 +26,7 @@ export default function SuperHeroList({ list }) {
               <TableCell>{hero.lastName}</TableCell>
               <TableCell>{hero.email}</TableCell>
               <TableCell>
-                <Button>Delete</Button>
+                <Button onClick={() => handleDeleteHero(hero)}>Delete</Button>
               </TableCell>
             </TableRow>
           ))}
