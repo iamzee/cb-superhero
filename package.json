@@ -4,19 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server:dev": "nodemon server/index.js"
+    "client:build:dev": "parcel client/index.html",
+    "server:start:dev": "nodemon server/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.5",
+    "@mui/material": "^5.2.8",
     "@sendgrid/mail": "^7.6.0",
     "dotenv": "^11.0.0",
     "express": "^4.17.2",
     "handlebars": "^4.7.7",
-    "puppeteer": "^13.0.1"
+    "puppeteer": "^13.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "parcel": "^2.2.0"
   }
 }
