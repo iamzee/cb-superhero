@@ -2,9 +2,9 @@
   "name": "cb-superhero",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "client:build:dev": "parcel client/index.html",
+    "client:build:dev": "parcel watch client/index.html",
+    "client:start:dev": "parcel client/index.html",
     "server:start:dev": "nodemon server/index.js"
   },
   "keywords": [],
@@ -15,7 +15,9 @@
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.8",
+    "@parcel/transformer-react-refresh-wrap": "^2.2.0",
     "@sendgrid/mail": "^7.6.0",
+    "axios": "^0.24.0",
     "dotenv": "^11.0.0",
     "express": "^4.17.2",
     "handlebars": "^4.7.7",

@@ -40,6 +40,7 @@ export default function HomePage() {
           handleAddHero={handleAddHero}
           handleDeleteHero={handleDeleteHero}
           handleDeleteAll={handleDeleteAll}
+          heroes={heroesToAdd}
         />
         <SuperHeroList list={heroesToAdd} handleDeleteHero={handleDeleteHero} />
       </Box>

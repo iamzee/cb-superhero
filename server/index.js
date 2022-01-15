@@ -11,7 +11,12 @@ const app = express();
 // parse JSON
 app.use(express.json());
 
-app.post("/", async (req, res) => {
+app.use(express.static(path.resolve(__dirname, "..", "dist")));
+app.get("*", (req, res) =>
+  res.sendFile(path.resolve(__dirname, "..", "dist", "index.html"))
+);
+
+app.post("/api/send", async (req, res) => {
   try {
     // get data
     const { data } = req.body;
@@ -70,7 +75,10 @@ app.post("/", async (req, res) => {
       force: true,
     });
 
-    res.send("OK");
+    res.json({
+      success: true,
+      message: "Mail sent successfully.",
+    });
   } catch (e) {
     console.log("err", e);
   }

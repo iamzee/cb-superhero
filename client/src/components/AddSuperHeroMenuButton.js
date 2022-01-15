@@ -28,7 +28,7 @@ export default function AddSuperHeroMenuButton({ handleAddHero }) {
     <>
       <Button
         startIcon={<AddIcon />}
-        variant="contained"
+        variant="outlined"
         onClick={handleClick}
         color="primary"
       >

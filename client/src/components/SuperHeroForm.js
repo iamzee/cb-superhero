@@ -29,7 +29,7 @@ export default function SuperHeroForm({ open, handleClose, handleAddHero }) {
   }
 
   return (
-    <Dialog open={open} disableEscapeKeyDown={true} onBackdropClick={() => {}}>
+    <Dialog open={open}>
       <DialogTitle>Add SuperHero</DialogTitle>
       <DialogContent>
         <Box
