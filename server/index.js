@@ -5,7 +5,7 @@ const Handlebars = require("handlebars");
 const fs = require("fs");
 const path = require("path");
 
-const generatePdf = require("./helpers/generatePDF");
+const generatePdfs = require("./helpers/generatePDF");
 
 const app = express();
 // parse JSON
@@ -14,7 +14,7 @@ app.use(express.json());
 app.post("/", async (req, res) => {
   try {
     // get data
-    const { firstName, lastName, email, code } = req.body;
+    const { data } = req.body;
 
     // get campus-superhero template
     const templatePath = path.resolve(
@@ -26,56 +26,53 @@ app.post("/", async (req, res) => {
 
     // get html from handlebars
     const template = Handlebars.compile(hbs);
-    const html = template({ firstName, lastName, email });
+    for (let i = 0; i < data.length; i++) {
+      data[i]["html"] = template(data[i]);
+    }
 
-    // specify path for the pdf file to be generated from html
-    const outFileName = "campus-superhero.pdf";
+    // create a directory to store pdfs
+    fs.mkdirSync(path.resolve(__dirname, "pdfs"));
 
-    // generate PDF using puppeteer
-    await generatePdf(html, { path: outFileName });
-
-    // get the generatedPDF file
-    const generatedPdf = fs.readFileSync(
-      path.resolve(__dirname, "..", outFileName)
-    );
+    // generate PDF using puppeteer and add 'pdf' field to data object
+    await generatePdfs(data);
 
     // set api key for sendGrid mail
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-    // construct message to be mailed
-    const msg = {
-      to: "zadeen99@gmail.com",
-      from: "zeeshan99adeen@gmail.com",
-      subject: "OFFER LETTER - Welcome to Coding Blocks SuperHero Program 🎉",
-      text: "This is from CODING BLOCKS",
-      attachments: [
-        {
-          content: generatedPdf.toString("base64"),
-          filename: "campus-superhero.pdf",
-          type: "application/pdf",
-          disposition: "attachment",
-          content_id: "campus-superhero",
-        },
-      ],
-    };
+    // construct messages to be mailed
+    const messages = [];
+    for (let i = 0; i < data.length; i++) {
+      let msg = {
+        to: data[i].email,
+        from: "zeeshan99adeen@gmail.com",
+        subject: "NOTHING",
+        text: "This is from nothing",
+        attachments: [
+          {
+            content: data[i]["pdf"].toString("base64"),
+            filename: "nothing.pdf",
+            type: "application/pdf",
+            disposition: "attachment",
+            content_id: "nothing",
+          },
+        ],
+      };
+
+      messages.push(msg);
+    }
 
     // send mail
-    await sgMail.send(msg);
+    await sgMail.send(messages);
 
-    // delete the generated PDF from server filesystem
-    fs.unlinkSync(path.resolve(__dirname, "..", outFileName))
-
-    // if everything works fine
-    res.status(200).send({
-      success: true,
+    // delete directory
+    fs.rmSync(path.resolve(__dirname, "pdfs"), {
+      recursive: true,
+      force: true,
     });
+
+    res.send("OK");
   } catch (e) {
-    console.log('error', e);
-    res.status(500).send({
-      success: false,
-      title: "Unable to send mail",
-      message: JSON.stringify(e),
-    });
+    console.log("err", e);
   }
 });
 
