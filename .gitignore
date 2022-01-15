@@ -1,4 +1,6 @@
 .env
 node_modules
 .parcel-cache
-dist
+dist/*
+
+!dist/assets

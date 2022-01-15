@@ -35,14 +35,26 @@ export default function HomePage() {
         </AppBar>
       </Box>
 
-      <Box sx={{ padding: "24px" }}>
+      <Box sx={{ maxWidth: "900px", margin: "auto", paddingTop: "24px" }}>
         <ActionButtons
           handleAddHero={handleAddHero}
           handleDeleteHero={handleDeleteHero}
           handleDeleteAll={handleDeleteAll}
           heroes={heroesToAdd}
         />
-        <SuperHeroList list={heroesToAdd} handleDeleteHero={handleDeleteHero} />
+        {heroesToAdd.length === 0 ? (
+          <Box sx={{ width: "300px", height: "300px", margin: "auto" }}>
+            <img
+              src="/assets/empty.svg"
+              style={{ width: "100%", height: "100%" }}
+            />
+          </Box>
+        ) : (
+          <SuperHeroList
+            list={heroesToAdd}
+            handleDeleteHero={handleDeleteHero}
+          />
+        )}
       </Box>
     </div>
   );

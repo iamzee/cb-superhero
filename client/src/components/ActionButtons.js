@@ -11,7 +11,7 @@ export default function ActionButtons({
   heroes,
 }) {
   return (
-    <Stack direction="row" spacing={2} sx={{ marginBottom: "16px" }}>
+    <Stack direction="row" spacing={2} sx={{ marginBottom: "24px" }}>
       <SendMailButton heroes={heroes} />
       <AddSuperHeroMenuButton handleAddHero={handleAddHero} />
       <Button
