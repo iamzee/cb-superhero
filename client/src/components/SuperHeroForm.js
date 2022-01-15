@@ -39,7 +39,7 @@ export default function SuperHeroForm({
   }
 
   return (
-    <Dialog open={open}>
+    <Dialog open={open} onClose={handleClose}>
       <DialogTitle>Add SuperHero</DialogTitle>
       <DialogContent>
         <Box

@@ -41,7 +41,12 @@ export default function AddSuperHeroMenuButton({ handleAddHero }) {
           </ListItemIcon>
           <ListItemText>Upload from csv</ListItemText>
         </MenuItem>
-        <MenuItem onClick={() => setManualEntryDialog(true)}>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            setManualEntryDialog(true);
+          }}
+        >
           <ListItemIcon>
             <EditIcon fontSize="small" />
           </ListItemIcon>
