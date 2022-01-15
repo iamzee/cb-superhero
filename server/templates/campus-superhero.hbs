@@ -1,14 +1,201 @@
 <html>
-<style type="text/css">
-  h1 {
-    background-color: teal;
-  }
-</style>
+
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      width: 100vw;
+      /* height: 100vh; */
+      overflow-x: hidden;
+    }
+
+    .bold {
+      font-weight: 600;
+    }
+
+    .italic {
+      font-style: italic;
+    }
+
+    .red {
+      color: #e74e4b;
+    }
+
+    .logo-container {
+      width: 100%;
+      padding-bottom: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      width: 200px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 38px;
+      text-transform: uppercase;
+      font-weight: bolder;
+      text-align: center;
+      color: #121212;
+      border-bottom: 2px solid #e74e4b;
+      padding-bottom: 12px;
+    }
+
+    h2 {
+      color: #e74e4b;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 10px;
+      font-weight: 600;
+      padding-top: 18px;
+      padding-left: 12px;
+    }
+
+    .content {
+      max-width: 80%;
+      margin: 36px auto;
+    }
+
+    .content__header {
+      font-size: 16px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 26px;
+    }
+
+    .content__header--right {
+      text-align: right;
+    }
+
+    .section {
+      margin-bottom: 26px;
+      font-size: 15px;
+      line-height: 20px;
+    }
+
+    .section__header {
+      font-size: 18px;
+      font-weight: 600;
+      padding-bottom: 8px;
+    }
+
+    .disclaimer {
+      margin-top: 14px;
+    }
+  </style>
+</head>
 
 <body>
-  <h1>Nothing</h1>
-  <h2>{{firstName}} {{lastName}}</h2>
-  <h3>{{email}}</h3>
+  <div class="logo-container">
+    <img class="logo" src="https://minio.codingblocks.com/public/cblogo-black.png" />
+  </div>
+  <div class="header">
+    <h1>You are a superhero</h1>
+    <h2>Welcome to coding blocks</h2>
+  </div>
+  <div class="content">
+    <div class="content__header">
+      <p>
+        Hey <span class="bold">{{firstName}}</span>,
+      </p>
+      <p class="content__header--right">January 12, 2022</p>
+    </div>
+    <div class="section">
+      Welcome to the Coding Blocks Family! As an organization of repute, our mission is to train
+      brains to become great coders! We have an awesome team of super-intelligent, highly
+      passionate & energetic SuperHeroes, whose mission is to make Coding Blocks grow each day,
+      shine forever & be the best always.
+    </div>
+    <div class="section">
+      Should you choose to accept your mission, you will work as a Coding Blocks <span class="bold red">Campus
+        SuperHero</span>. You will receive Coding Blocks Goodies from us when you will complete your Roles
+      & Responsibilities
+    </div>
+    <div class="section">
+      <h3 class="section__header">Perks and Benefits</h3>
+      <ul>
+        <li>LinkedIn Recommendations</li>
+        <li>Exclusive Access to Webinars</li>
+        <li>Cash Incentives</li>
+        <li>Personalized Goodies (Based on Performance)</li>
+        <li>Wildcraft Bags</li>
+        <li>Pens & Diaries</li>
+        <li>Stickers & sippers</li>
+        <li>Get a chance to be featured on Coding Blocks Blog Publication.</li>
+        <li>Special Discount on Coding Blocks Courses</li>
+        <li>90% OFF on our courses in SuperHero Birthday Month</li>
+        <li>As a part of Superhero Development Program, avail an opportunity to get a career
+          guidance from Coding Blocks Mentors.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h3 class="section__header">Roles and Responsibilities</h3>
+      <ul>
+        <li>Be the official Campus SuperHero and student representative of Coding Blocks in your
+          college.</li>
+        <li>Promote our courses and get excited incentives.</li>
+        <li>Introduce your peers and host programming contests on Hacker Blocks (our online
+          coding practice platform).</li>
+        <li>Maintain relevant databases and submit monthly reports.</li>
+        <li>Conduct Coding Blocks Workshop/Webinars every month and programming events /
+          online hackathon every 45 days in your campus, so that it will be beneficial for
+          students.</li>
+        <li>Write technical/placement blogs on Coding Blocks Publication.</li>
+        <li>Explore new ideas on how Coding Blocks can assist your college.</li>
+        <li>Introduce BOSS event of Coding Blocks in Tech Talks.</li>
+        <li>Associate Coding Blocks with various college societies and tech-fest organizers.</li>
+        <li>Start Coding Blocks Society in your college to engage students in technical workshops
+          and help them in holistic growth.</li>
+        <li>Spread a word about the YouTube Series of Coding Blocks Mentors.</li>
+        <li>Any other community initiative will be rewarded as well.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h3 class="section__header">Rules</h3>
+      <ul>
+        <li>Coding Blocks will review your performance every month and if you perform poorly
+          for consecutive two months your offer will be terminated.</li>
+        <li>Rewards will be dispatched based on your performance at, end of the month.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h3 class="section__header">
+        Unique Referral Code
+      </h3>
+      Your SuperHero code/unique referral code is <span class="bold">CBCA2116</span> for Online Courses,
+      <span class="bold">CBCALV2116</span> for LIVE Courses, and <span class="bold">CBCL2116</span> Offline course and
+      you can share this code
+      with prospective students who want to join Coding Blocks. This code, upon usage by
+      prospective new students will give you the following benefits:
+      <ul>
+        <li>
+          Offline course – Rs 500 to you and Rs 500 off to the signed-up student.
+        </li>
+      </ul>
+      <p class="italic disclaimer">
+        Note: This discount is not valid during the sale or in conjunction with any special
+        promotional event. Signed-up students cannot avail of or redeem scholarship discounts with
+        the SuperHero Referral.
+      </p>
+    </div>
+  </div>
 </body>
 
 </html>

@@ -1,10 +1,41 @@
 const puppeteer = require("puppeteer");
 const path = require("path");
 
+// -webkit-print-color-adjust is used to print background-color on footer, otherwise it will not work
+// set font-size on footer, by default it is 0
+const footerTemplate = `
+<style>
+  html {
+    -webkit-print-color-adjust: exact;
+  }
+  #footer { padding: 0 !important; }
+</style>
+<span
+  style=" width: 100%; background: #e74e4b; font-size: 10px; font-weight: 600; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; padding: 8px 24px; letter-spacing: 8px; color: bisque;">
+  <span>Campus superhero</span>
+  <span>Confidential</span>
+</span>
+`;
+
+// styles to not display header
+const headerTemplate = `
+<style>
+  #header { display: none !important; }
+</style>
+`;
+
 const defaultPDFOptions = {
-  path: "mypdf",
+  displayHeaderFooter: true,
   format: "a4",
   printBackground: true,
+  margin: {
+    top: "100px",
+    bottom: "100px",
+    left: "0px",
+    right: "0px",
+  },
+  headerTemplate,
+  footerTemplate,
 };
 
 module.exports = async function (data, pdfOptions = {}) {
@@ -21,7 +52,7 @@ module.exports = async function (data, pdfOptions = {}) {
           await page.setContent(data[i]["html"], {
             waitUntil: "networkidle0",
           });
-          await page.emulateMediaType("screen");
+          // await page.emulateMedia("screen");
           const pdf = await page.pdf({
             ...defaultPDFOptions,
             ...pdfOptions,
