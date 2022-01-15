@@ -11,13 +11,14 @@ export default function ActionButtons({
   heroes,
 }) {
   return (
-    <Stack direction="row" spacing={2} sx={{ marginBottom: "24px" }}>
+    <Stack direction="row" spacing={2} sx={{ marginBottom: "32px" }}>
       <SendMailButton heroes={heroes} />
       <AddSuperHeroMenuButton handleAddHero={handleAddHero} />
       <Button
         variant="outlined"
         startIcon={<DeleteSweepIcon />}
         onClick={handleDeleteAll}
+        disabled={heroes.length === 0}
       >
         Delete All
       </Button>
