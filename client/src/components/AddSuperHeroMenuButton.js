@@ -51,7 +51,7 @@ export default function AddSuperHeroMenuButton({ handleAddHero }) {
       <SuperHeroForm
         open={manualEntryDialog}
         handleClose={() => setManualEntryDialog(false)}
-        handleAddHero={handleAddHero}
+        handleSubmit={handleAddHero}
       />
     </>
   );

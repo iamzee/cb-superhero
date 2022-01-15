@@ -8,20 +8,30 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
-export default function SuperHeroForm({ open, handleClose, handleAddHero }) {
+export default function SuperHeroForm({
+  open,
+  handleClose,
+  handleSubmit,
+  hero,
+}) {
   // DRY THIS
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState(hero ? hero.firstName : "");
+  const [lastName, setLastName] = useState(hero ? hero.lastName : "");
+  const [email, setEmail] = useState(hero ? hero.email : "");
 
-  function onAddHero() {
-    handleAddHero([
-      {
-        firstName,
-        lastName,
-        email,
-      },
-    ]);
+  function onSubmit() {
+    const payload = {
+      firstName,
+      lastName,
+      email,
+    };
+
+    if (hero) {
+      handleSubmit(payload, hero.email);
+      handleClose();
+    } else {
+      handleSubmit([payload]);
+    }
 
     setFirstName("");
     setLastName("");
@@ -68,11 +78,8 @@ export default function SuperHeroForm({ open, handleClose, handleAddHero }) {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button
-          disabled={!firstName || !lastName || !email}
-          onClick={onAddHero}
-        >
-          Add
+        <Button disabled={!firstName || !lastName || !email} onClick={onSubmit}>
+          {hero ? "Update" : "Add"}
         </Button>
       </DialogActions>
     </Dialog>

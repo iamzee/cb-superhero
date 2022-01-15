@@ -20,6 +20,15 @@ export default function HomePage() {
     setHeroesToAdd([]);
   }
 
+  function handleUpdateHero(hero, email) {
+    setHeroesToAdd(
+      heroesToAdd.map(h => {
+        if (h.email === email) return hero;
+        return h;
+      })
+    );
+  }
+
   return (
     <Box sx={{ maxWidth: "900px", margin: "auto", paddingTop: "24px" }}>
       <img
@@ -40,7 +49,11 @@ export default function HomePage() {
           />
         </Box>
       ) : (
-        <SuperHeroList list={heroesToAdd} handleDeleteHero={handleDeleteHero} />
+        <SuperHeroList
+          list={heroesToAdd}
+          handleDeleteHero={handleDeleteHero}
+          handleUpdateHero={handleUpdateHero}
+        />
       )}
     </Box>
   );
