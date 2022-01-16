@@ -9,11 +9,15 @@ export default function ActionButtons({
   handleAddHero,
   handleDeleteAll,
   heroes,
+  handleAddBulkHero,
 }) {
   return (
     <Stack direction="row" spacing={2} sx={{ marginBottom: "32px" }}>
       <SendMailButton heroes={heroes} />
-      <AddSuperHeroMenuButton handleAddHero={handleAddHero} />
+      <AddSuperHeroMenuButton
+        handleAddHero={handleAddHero}
+        handleAddBulkHero={handleAddBulkHero}
+      />
       <Button
         variant="outlined"
         startIcon={<DeleteSweepIcon />}

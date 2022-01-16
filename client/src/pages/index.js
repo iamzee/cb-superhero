@@ -20,6 +20,10 @@ export default function HomePage() {
     setHeroesToAdd([]);
   }
 
+  function handleAddBulkHero(heroes) {
+    setHeroesToAdd(heroes);
+  }
+
   function handleUpdateHero(hero, email) {
     setHeroesToAdd(
       heroesToAdd.map(h => {
@@ -39,6 +43,7 @@ export default function HomePage() {
         handleAddHero={handleAddHero}
         handleDeleteHero={handleDeleteHero}
         handleDeleteAll={handleDeleteAll}
+        handleAddBulkHero={handleAddBulkHero}
         heroes={heroesToAdd}
       />
       {heroesToAdd.length === 0 ? (

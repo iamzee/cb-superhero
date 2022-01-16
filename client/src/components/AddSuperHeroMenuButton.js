@@ -5,13 +5,16 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import UploadFileIcon from "@mui/icons-material/UploadFile";
 import EditIcon from "@mui/icons-material/Edit";
 import AddIcon from "@mui/icons-material/Add";
 
 import SuperHeroForm from "./SuperHeroForm";
+import UploadFromCsv from "./UploadFromCsv";
 
-export default function AddSuperHeroMenuButton({ handleAddHero }) {
+export default function AddSuperHeroMenuButton({
+  handleAddHero,
+  handleAddBulkHero,
+}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -35,12 +38,7 @@ export default function AddSuperHeroMenuButton({ handleAddHero }) {
         Add SuperHero
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <UploadFileIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Upload from csv</ListItemText>
-        </MenuItem>
+        <UploadFromCsv handleAddBulkHero={handleAddBulkHero} />
         <MenuItem
           onClick={() => {
             handleClose();
