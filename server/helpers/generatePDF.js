@@ -45,39 +45,69 @@ module.exports = async function (data, pdfOptions = {}) {
       args: ["--no-sandbox", "--disable-web-security"],
     });
 
-    for (let i = 0; i < data.length; i++) {
-      data[i]["pdf"] = new Promise(async (resolve, reject) => {
-        try {
-          const page = await browser.newPage();
-          await page.setContent(data[i]["html"], {
-            waitUntil: "networkidle0",
-          });
-          // await page.emulateMedia("screen");
-          const pdf = await page.pdf({
-            ...defaultPDFOptions,
-            ...pdfOptions,
-            path: path.resolve(
-              __dirname,
-              "..",
-              "pdfs",
-              `${data[i]["email"]}.pdf`
-            ),
-          });
-          resolve(pdf);
-        } catch (e) {
-          reject(e);
-        }
-      });
-    }
+    const page = await browser.newPage();
 
-    const pdfs = await Promise.all(data.map(d => d.pdf));
+    await page.setContent(data["html"], {
+      waitUntil: "networkidle0",
+    });
 
-    // adding pdf field to data, so we dont have to read through file system while sending mail
-    for (i = 0; i < pdfs.length; i++) {
-      data[i]["pdf"] = pdfs[i];
-    }
+    data["pdf"] = await page.pdf({
+      ...defaultPDFOptions,
+      ...pdfOptions,
+    });
+
     await browser.close();
   } catch (e) {
     console.log("error=================", e);
   }
 };
+
+/* -----------------------------------------------------------
+  The below function is to create multiple pdfs asynchronously
+  didnt delete it hoping it will be useful someday
+  -------------------------------------------------------------
+*/
+
+// module.exports = async function (data, pdfOptions = {}) {
+//   try {
+//     const browser = await puppeteer.launch({
+//       headless: true,
+//       args: ["--no-sandbox", "--disable-web-security"],
+//     });
+
+//     for (let i = 0; i < data.length; i++) {
+//       data[i]["pdf"] = new Promise(async (resolve, reject) => {
+//         try {
+//           const page = await browser.newPage();
+//           await page.setContent(data[i]["html"], {
+//             waitUntil: "networkidle0",
+//           });
+//           // await page.emulateMedia("screen");
+//           const pdf = await page.pdf({
+//             ...defaultPDFOptions,
+//             ...pdfOptions,
+//             path: path.resolve(
+//               __dirname,
+//               "..",
+//               "pdfs",
+//               `${data[i]["email"]}.pdf`
+//             ),
+//           });
+//           resolve(pdf);
+//         } catch (e) {
+//           reject(e);
+//         }
+//       });
+//     }
+
+//     const pdfs = await Promise.all(data.map(d => d.pdf));
+
+//     // adding pdf field to data, so we dont have to read through file system while sending mail
+//     for (i = 0; i < pdfs.length; i++) {
+//       data[i]["pdf"] = pdfs[i];
+//     }
+//     await browser.close();
+//   } catch (e) {
+//     console.log("error=================", e);
+//   }
+// };
