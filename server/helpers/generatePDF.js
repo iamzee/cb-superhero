@@ -44,13 +44,17 @@ module.exports = async function (data, pdfOptions = {}) {
       headless: true,
       args: ["--no-sandbox", "--disable-web-security"],
     });
-
+    console.log("browser===================================");
+    console.log(browser);
     const page = await browser.newPage();
 
     await page.setContent(data["html"], {
       timeout: 0,
       waitUntil: "networkidle0",
     });
+
+    console.log("page==============================");
+    console.log(page);
 
     data["pdf"] = await page.pdf({
       ...defaultPDFOptions,
