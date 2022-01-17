@@ -41,12 +41,15 @@ const defaultPDFOptions = {
 module.exports = async function (data, pdfOptions = {}) {
   try {
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: false,
       args: ["--no-sandbox", "--disable-web-security"],
     });
     console.log("browser===================================");
     console.log(browser);
     const page = await browser.newPage();
+
+    console.log("page11============================");
+    console.log(page);
 
     await page.setContent(data["html"], {
       timeout: 0,
