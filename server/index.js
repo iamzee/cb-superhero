@@ -42,8 +42,6 @@ app.post("/api/send", async (req, res) => {
       date: `${getMonth(d.getMonth())} ${d.getDate()}, ${d.getFullYear()}`,
     });
 
-    console.log("data before pdf", data);
-
     // generate PDF using puppeteer and add 'pdf' field to data object
     await generatePdf(data, {
       path: path.resolve(__dirname, `${data["email"]}.pdf`),
@@ -83,8 +81,6 @@ app.post("/api/send", async (req, res) => {
         },
       ],
     };
-
-    console.log("message", msg);
 
     // delete directory
     fs.unlinkSync(path.resolve(__dirname, `${data.email}.pdf`));
