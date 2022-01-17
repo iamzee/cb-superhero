@@ -5,8 +5,10 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
-import DialogContentText from "@mui/material/DialogContentText";
 import CircularProgress from "@mui/material/CircularProgress";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import Divider from "@mui/material/Divider";
 
 export default function UploadFromCsvModal({
   open,
@@ -50,6 +52,7 @@ export default function UploadFromCsvModal({
     }
 
     setProcessing(false);
+    handleClose();
   }
 
   return (
@@ -57,17 +60,17 @@ export default function UploadFromCsvModal({
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Import CSV file</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            CSV file should have the following format with the given header
+          <Alert severity="info">
+            <AlertTitle>Info</AlertTitle>
+            CSV file should have the following format with the given header.
             <br />
-            -------------------------------------------
+            <Divider />
+            firstName,lastName,email,onlineCourseRC,liveCourseRC,offlineCourseRC
             <br />
-            firstName,lastName,email
+            Lionel,Messi,lionel@example.com,CODE1,CODE2,CODE3
             <br />
-            Lionel,Messi,lionel@example.com
-            <br />
-            Cristiano,Ronaldo,ronaldo@example.com
-          </DialogContentText>
+            Cristiano,Ronaldo,ronaldo@example.com,CODE4,CODE5,CODE6
+          </Alert>
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={handleClose}>
@@ -82,7 +85,12 @@ export default function UploadFromCsvModal({
             </Button>
           ) : (
             <Button variant="contained">
-              <label htmlFor="csv-upload">Import</label>
+              <label
+                style={{ width: "100%", height: "100%", cursor: "pointer" }}
+                htmlFor="csv-upload"
+              >
+                Import
+              </label>
             </Button>
           )}
         </DialogActions>
