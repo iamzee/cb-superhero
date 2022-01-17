@@ -1,6 +1,6 @@
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
+import ClearAllIcon from "@mui/icons-material/ClearAll";
 
 import AddSuperHeroMenuButton from "./AddSuperHeroMenuButton";
 import SendMailButton from "./SendMailButton";
@@ -20,14 +20,16 @@ export default function ActionButtons({
         appStatus={appStatus}
       />
       <AddSuperHeroMenuButton heroesDispatch={heroesDispatch} />
-      {/* <Button
+      <Button
         variant="outlined"
-        startIcon={<DeleteSweepIcon />}
-        onClick={handleDeleteAll}
+        startIcon={<ClearAllIcon />}
+        onClick={() => {
+          heroesDispatch({ type: "deleteAll" });
+        }}
         disabled={heroes.length === 0}
       >
-        Delete All
-      </Button> */}
+        Clear All
+      </Button>
     </Stack>
   );
 }

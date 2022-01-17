@@ -25,6 +25,9 @@ function heroesReducer(state, action) {
         return s;
       });
     }
+    case "deleteAll": {
+      return [];
+    }
   }
 }
 
@@ -32,10 +35,6 @@ export default function HomePage() {
   const [appStatus, setAppStatus] = useState(""); // 'SENDING', 'SENT', ''
 
   const [heroes, heroesDispatch] = useReducer(heroesReducer, []);
-
-  function handleDeleteAll() {
-    setHeroesToAdd([]);
-  }
 
   async function handleSendMail() {
     setAppStatus("SENDING");
@@ -89,7 +88,6 @@ export default function HomePage() {
         style={{ height: "64px", width: "auto", marginBottom: "32px" }}
       />
       <ActionButtons
-        // handleDeleteAll={handleDeleteAll}
         heroes={heroes}
         handleSendMail={handleSendMail}
         appStatus={appStatus}
