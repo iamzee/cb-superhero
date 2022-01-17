@@ -6,6 +6,7 @@ const fs = require("fs");
 const path = require("path");
 
 const generatePdf = require("./helpers/generatePDF");
+const getMonth = require("./helpers/getMonth");
 
 const PORT = process.env.PORT;
 const BASE_URL = process.env.BASE_URL;
@@ -34,9 +35,11 @@ app.post("/api/send", async (req, res) => {
 
     // get html from handlebars
     const template = Handlebars.compile(hbs);
+    const d = new Date();
     data["html"] = template({
       ...data,
       imageSrc: `${BASE_URL}:${PORT}/assets/cblogo-black.png`,
+      date: `${getMonth(d.getMonth())} ${d.getDate()}, ${d.getFullYear()}`,
     });
 
     // generate PDF using puppeteer and add 'pdf' field to data object
