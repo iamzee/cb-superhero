@@ -41,7 +41,7 @@ const defaultPDFOptions = {
 module.exports = async function (data, pdfOptions = {}) {
   try {
     const browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       args: ["--no-sandbox", "--disable-web-security"],
     });
     console.log("browser===================================");
