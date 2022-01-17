@@ -48,6 +48,7 @@ module.exports = async function (data, pdfOptions = {}) {
     const page = await browser.newPage();
 
     await page.setContent(data["html"], {
+      timeout: 0,
       waitUntil: "networkidle0",
     });
 
