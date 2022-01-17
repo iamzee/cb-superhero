@@ -1,36 +1,85 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
+import axios from "axios";
 
 import Box from "@mui/material/Box";
 
 import SuperHeroList from "../components/SuperHeroList";
 import ActionButtons from "../components/ActionButtons";
 
+function heroesReducer(state, action) {
+  switch (action.type) {
+    case "add": {
+      return [...state, { ...action.hero, status: {} }];
+    }
+    case "set": {
+      return [...action.heroes];
+    }
+    case "delete": {
+      return state.filter(s => s.email !== action.hero.email);
+    }
+    case "update": {
+      return state.map(s => {
+        if (s.email === action.email) {
+          return action.hero;
+        }
+        return s;
+      });
+    }
+  }
+}
+
 export default function HomePage() {
-  const [heroesToAdd, setHeroesToAdd] = useState([]);
+  const [appStatus, setAppStatus] = useState(""); // 'SENDING', 'SENT', ''
 
-  function handleAddHero(hero) {
-    setHeroesToAdd([...hero, ...heroesToAdd]);
-  }
-
-  function handleDeleteHero(hero) {
-    setHeroesToAdd(heroesToAdd.filter(h => h.email !== hero.email));
-  }
+  const [heroes, heroesDispatch] = useReducer(heroesReducer, []);
 
   function handleDeleteAll() {
     setHeroesToAdd([]);
   }
 
-  function handleAddBulkHero(heroes) {
-    setHeroesToAdd(heroes);
-  }
+  async function handleSendMail() {
+    setAppStatus("SENDING");
 
-  function handleUpdateHero(hero, email) {
-    setHeroesToAdd(
-      heroesToAdd.map(h => {
-        if (h.email === email) return hero;
-        return h;
-      })
-    );
+    for (let i = 0; i < heroes.length; i++) {
+      heroesDispatch({
+        type: "update",
+        email: heroes[i]["email"],
+        hero: { ...heroes[i], status: { inProgress: true } },
+      });
+    }
+
+    for (let i = 0; i < heroes.length; i++) {
+      try {
+        const { data } = await axios({
+          method: "POST",
+          url: "/api/send",
+          data: { data: heroes[i] },
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        heroesDispatch({
+          type: "update",
+          email: heroes[i]["email"],
+          hero: { ...heroes[i], status: { inProgress: false, ...data } },
+        });
+      } catch (e) {
+        if (e.response && e.response.data) {
+          heroesDispatch({
+            type: "update",
+            email: heroes[i]["email"],
+            hero: {
+              ...heroes[i],
+              status: { inProgress: false, ...e.response.data },
+            },
+          });
+        }
+        console.log("error================", e);
+      }
+    }
+
+    setAppStatus("SENT");
   }
 
   return (
@@ -40,13 +89,13 @@ export default function HomePage() {
         style={{ height: "64px", width: "auto", marginBottom: "32px" }}
       />
       <ActionButtons
-        handleAddHero={handleAddHero}
-        handleDeleteHero={handleDeleteHero}
-        handleDeleteAll={handleDeleteAll}
-        handleAddBulkHero={handleAddBulkHero}
-        heroes={heroesToAdd}
+        // handleDeleteAll={handleDeleteAll}
+        heroes={heroes}
+        handleSendMail={handleSendMail}
+        appStatus={appStatus}
+        heroesDispatch={heroesDispatch}
       />
-      {heroesToAdd.length === 0 ? (
+      {heroes.length === 0 ? (
         <Box sx={{ width: "300px", height: "300px", margin: "auto" }}>
           <img
             src="/assets/empty.svg"
@@ -55,9 +104,9 @@ export default function HomePage() {
         </Box>
       ) : (
         <SuperHeroList
-          list={heroesToAdd}
-          handleDeleteHero={handleDeleteHero}
-          handleUpdateHero={handleUpdateHero}
+          list={heroes}
+          heroesDispatch={heroesDispatch}
+          appStatus={appStatus}
         />
       )}
     </Box>

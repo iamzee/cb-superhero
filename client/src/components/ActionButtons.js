@@ -6,26 +6,28 @@ import AddSuperHeroMenuButton from "./AddSuperHeroMenuButton";
 import SendMailButton from "./SendMailButton";
 
 export default function ActionButtons({
-  handleAddHero,
-  handleDeleteAll,
+  // handleDeleteAll,
   heroes,
-  handleAddBulkHero,
+  handleSendMail,
+  appStatus,
+  heroesDispatch,
 }) {
   return (
     <Stack direction="row" spacing={2} sx={{ marginBottom: "32px" }}>
-      <SendMailButton heroes={heroes} />
-      <AddSuperHeroMenuButton
-        handleAddHero={handleAddHero}
-        handleAddBulkHero={handleAddBulkHero}
+      <SendMailButton
+        heroes={heroes}
+        handleSendMail={handleSendMail}
+        appStatus={appStatus}
       />
-      <Button
+      <AddSuperHeroMenuButton heroesDispatch={heroesDispatch} />
+      {/* <Button
         variant="outlined"
         startIcon={<DeleteSweepIcon />}
         onClick={handleDeleteAll}
         disabled={heroes.length === 0}
       >
         Delete All
-      </Button>
+      </Button> */}
     </Stack>
   );
 }

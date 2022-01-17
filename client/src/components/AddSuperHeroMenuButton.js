@@ -11,10 +11,7 @@ import AddIcon from "@mui/icons-material/Add";
 import SuperHeroForm from "./SuperHeroForm";
 import UploadFromCsv from "./UploadFromCsv";
 
-export default function AddSuperHeroMenuButton({
-  handleAddHero,
-  handleAddBulkHero,
-}) {
+export default function AddSuperHeroMenuButton({ heroesDispatch }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -38,7 +35,7 @@ export default function AddSuperHeroMenuButton({
         Add SuperHero
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <UploadFromCsv handleAddBulkHero={handleAddBulkHero} />
+        <UploadFromCsv heroesDispatch={heroesDispatch} />
         <MenuItem
           onClick={() => {
             handleClose();
@@ -54,7 +51,7 @@ export default function AddSuperHeroMenuButton({
       <SuperHeroForm
         open={manualEntryDialog}
         handleClose={() => setManualEntryDialog(false)}
-        handleSubmit={handleAddHero}
+        handleSubmit={hero => heroesDispatch({ type: "add", hero })}
       />
     </>
   );

@@ -11,7 +11,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 export default function UploadFromCsvModal({
   open,
   handleClose,
-  handleAddBulkHero,
+  heroesDispatch,
 }) {
   const [processing, setProcessing] = useState(false);
 
@@ -45,7 +45,7 @@ export default function UploadFromCsvModal({
       const reader = new FileReader();
       reader.readAsText(file);
       reader.onload = function (e) {
-        handleAddBulkHero(toCsv(e.target.result));
+        heroesDispatch({ type: "set", heroes: toCsv(e.target.result) });
       };
     }
 

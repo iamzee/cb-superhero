@@ -25,12 +25,9 @@ export default function SuperHeroForm({
       lastName,
       email,
     };
-
+    handleSubmit(payload);
     if (hero) {
-      handleSubmit(payload, hero.email);
       handleClose();
-    } else {
-      handleSubmit([payload]);
     }
 
     setFirstName("");
