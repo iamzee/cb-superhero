@@ -57,6 +57,8 @@ module.exports = async function (data, pdfOptions = {}) {
       ...pdfOptions,
     });
 
+    console.log("data after pdf", data);
+
     await browser.close();
   } catch (e) {
     console.log("error=================", e);
