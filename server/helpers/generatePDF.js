@@ -51,10 +51,13 @@ module.exports = async function (data, pdfOptions = {}) {
     console.log("page11============================");
     console.log(page);
 
-    await page.setContent("<h1>Hello</h1>", {
-      timeout: 0,
-      waitUntil: "networkidle0",
-    });
+    await page.setContent(
+      '<h1>Hello</h1><img src="https://minio.codingblocks.com/public/cblogo-black.png" >',
+      {
+        timeout: 0,
+        waitUntil: "networkidle0",
+      }
+    );
 
     console.log("page==============================");
     console.log(page);
