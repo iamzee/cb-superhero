@@ -6,7 +6,7 @@ import AddSuperHeroMenuButton from "./AddSuperHeroMenuButton";
 import SendMailButton from "./SendMailButton";
 
 export default function ActionButtons({
-  // handleDeleteAll,
+  handleSetAppStatus,
   heroes,
   handleSendMail,
   appStatus,
@@ -14,22 +14,30 @@ export default function ActionButtons({
 }) {
   return (
     <Stack direction="row" spacing={2} sx={{ marginBottom: "32px" }}>
-      <SendMailButton
-        heroes={heroes}
-        handleSendMail={handleSendMail}
-        appStatus={appStatus}
-      />
-      <AddSuperHeroMenuButton heroesDispatch={heroesDispatch} />
-      <Button
-        variant="outlined"
-        startIcon={<ClearAllIcon />}
-        onClick={() => {
-          heroesDispatch({ type: "deleteAll" });
-        }}
-        disabled={heroes.length === 0}
-      >
-        Clear All
-      </Button>
+      {appStatus !== "SENT" && (
+        <SendMailButton
+          heroes={heroes}
+          handleSendMail={handleSendMail}
+          appStatus={appStatus}
+        />
+      )}
+      {appStatus !== "SENDING" && appStatus !== "SENT" && (
+        <AddSuperHeroMenuButton heroesDispatch={heroesDispatch} />
+      )}
+
+      {appStatus === "SENT" && (
+        <Button
+          variant="outlined"
+          startIcon={<ClearAllIcon />}
+          onClick={() => {
+            heroesDispatch({ type: "deleteAll" });
+            handleSetAppStatus("");
+          }}
+          disabled={heroes.length === 0}
+        >
+          Clear All
+        </Button>
+      )}
     </Stack>
   );
 }

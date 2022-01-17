@@ -2,6 +2,7 @@ import { useState, useReducer } from "react";
 import axios from "axios";
 
 import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
 
 import SuperHeroList from "../components/SuperHeroList";
 import ActionButtons from "../components/ActionButtons";
@@ -33,8 +34,11 @@ function heroesReducer(state, action) {
 
 export default function HomePage() {
   const [appStatus, setAppStatus] = useState(""); // 'SENDING', 'SENT', ''
-
   const [heroes, heroesDispatch] = useReducer(heroesReducer, []);
+
+  function handleSetAppStatus(status) {
+    setAppStatus(status);
+  }
 
   async function handleSendMail() {
     setAppStatus("SENDING");
@@ -92,7 +96,16 @@ export default function HomePage() {
         handleSendMail={handleSendMail}
         appStatus={appStatus}
         heroesDispatch={heroesDispatch}
+        handleSetAppStatus={handleSetAppStatus}
       />
+      {appStatus === "SENDING" && (
+        <Alert severity="warning">
+          Do not refresh or close the browser while the process is running.
+        </Alert>
+      )}
+      {appStatus === "SENT" && (
+        <Alert severity="info">Clear all to send more emails.</Alert>
+      )}
       {heroes.length === 0 ? (
         <Box sx={{ width: "300px", height: "300px", margin: "auto" }}>
           <img
