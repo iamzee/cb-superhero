@@ -4,8 +4,10 @@
   "description": "",
   "scripts": {
     "client:build:dev": "parcel watch client/index.html",
+    "build": "parcel build client/index.html", 
     "client:start:dev": "parcel client/index.html",
-    "server:start:dev": "nodemon server/index.js"
+    "server:start:dev": "nodemon server/index.js",
+    "start": "node server/index.js"
   },
   "keywords": [],
   "author": "",
