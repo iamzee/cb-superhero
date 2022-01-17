@@ -82,11 +82,11 @@ app.post("/api/send", async (req, res) => {
       ],
     };
 
-    // send mail
-    await sgMail.send(msg);
-
     // delete directory
     fs.unlinkSync(path.resolve(__dirname, `${data.email}.pdf`));
+
+    // send mail
+    await sgMail.send(msg);
 
     res.json({
       success: true,
