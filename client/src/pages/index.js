@@ -3,6 +3,7 @@ import axios from "axios";
 
 import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
+import Chip from "@mui/material/Chip";
 
 import SuperHeroList from "../components/SuperHeroList";
 import ActionButtons from "../components/ActionButtons";
@@ -114,11 +115,18 @@ export default function HomePage() {
           />
         </Box>
       ) : (
-        <SuperHeroList
-          list={heroes}
-          heroesDispatch={heroesDispatch}
-          appStatus={appStatus}
-        />
+        <>
+          <Chip
+            label={`${heroes.length} Entries`}
+            color="info"
+            sx={{ margin: "16px 0px" }}
+          />
+          <SuperHeroList
+            list={heroes}
+            heroesDispatch={heroesDispatch}
+            appStatus={appStatus}
+          />
+        </>
       )}
     </Box>
   );
