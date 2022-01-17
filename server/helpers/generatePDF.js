@@ -51,7 +51,7 @@ module.exports = async function (data, pdfOptions = {}) {
     console.log("page11============================");
     console.log(page);
 
-    await page.setContent(data["html"], {
+    await page.setContent("<h1>Hello</h1>", {
       timeout: 0,
       waitUntil: "networkidle0",
     });
