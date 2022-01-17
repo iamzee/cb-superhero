@@ -110,5 +110,6 @@ module.exports = async function (data, pdfOptions = {}) {
 //     await browser.close();
 //   } catch (e) {
 //     console.log("error=================", e);
+// console.log("error=================", e);
 //   }
 // };
