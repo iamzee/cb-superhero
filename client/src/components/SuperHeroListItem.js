@@ -18,6 +18,9 @@ export default function SuperHeroListItem({ hero, heroesDispatch, appStatus }) {
         <TableCell>{hero.firstName}</TableCell>
         <TableCell>{hero.lastName}</TableCell>
         <TableCell>{hero.email}</TableCell>
+        <TableCell>{hero.onlineCourseRC}</TableCell>
+        <TableCell>{hero.liveCourseRC}</TableCell>
+        <TableCell>{hero.offlineCourseRC}</TableCell>
         {appStatus === "SENDING" || appStatus === "SENT" ? (
           <TableCell>
             {hero.status.inProgress === true ? (

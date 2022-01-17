@@ -25,6 +25,9 @@ export default function SuperHeroList({
               <TableCell>First Name</TableCell>
               <TableCell>Last Name</TableCell>
               <TableCell>Email</TableCell>
+              <TableCell>Online course RC</TableCell>
+              <TableCell>Live course RC</TableCell>
+              <TableCell>Offline course RC</TableCell>
               {appStatus === "SENDING" || appStatus === "SENT" ? (
                 <TableCell>Status</TableCell>
               ) : (
