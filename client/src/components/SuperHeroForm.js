@@ -45,6 +45,9 @@ export default function SuperHeroForm({
     setFirstName("");
     setLastName("");
     setEmail("");
+    setOnlineCourseRC("");
+    setLiveCourseRC("");
+    setOfflineCourseRC("");
   }
 
   return (
