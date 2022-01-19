@@ -58,7 +58,7 @@ app.post("/api/send", async (req, res) => {
     // construct messages to be mailed
     let msg = {
       to: data.email,
-      from: "zeeshan99adeen@gmail.com",
+      from: "superhero@codingblocks.com",
       templateId: "d-bc54206283ad43ecb511f46bebbc2c86",
       dynamicTemplateData: {
         subject: "OFFER LETTER - Welcome to Coding Blocks SuperHero Program 🎉",
