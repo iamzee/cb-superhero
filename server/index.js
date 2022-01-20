@@ -38,8 +38,15 @@ app.post("/api/send", async (req, res) => {
     const d = new Date();
     data["html"] = template({
       ...data,
-      imageSrc: `${BASE_URL}:${PORT}/assets/cblogo-black.png`,
       date: `${getMonth(d.getMonth())} ${d.getDate()}, ${d.getFullYear()}`,
+      fontLight: `${BASE_URL}/assets/fonts/Gilroy-Light.ttf`,
+      fontBold: `${BASE_URL}/assets/fonts/Gilroy-ExtraBold.ttf`,
+      image1: `${BASE_URL}/assets/images/image1.svg`,
+      image2: `${BASE_URL}/assets/images/image2.svg`,
+      image3: `${BASE_URL}/assets/images/image3.svg`,
+      image4: `${BASE_URL}/assets/images/image4.svg`,
+      image5: `${BASE_URL}/assets/images/image5.svg`,
+      image6: `${BASE_URL}/assets/images/image6.svg`,
     });
 
     // generate PDF using puppeteer and add 'pdf' field to data object
@@ -58,7 +65,8 @@ app.post("/api/send", async (req, res) => {
     // construct messages to be mailed
     let msg = {
       to: data.email,
-      from: "superhero@codingblocks.com",
+      // from: "superhero@codingblocks.com",
+      from: "zeeshan99adeen@gmail.com",
       templateId: "d-bc54206283ad43ecb511f46bebbc2c86",
       dynamicTemplateData: {
         subject: "OFFER LETTER - Welcome to Coding Blocks SuperHero Program 🎉",

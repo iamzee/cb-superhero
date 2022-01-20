@@ -25,17 +25,18 @@ const headerTemplate = `
 `;
 
 const defaultPDFOptions = {
-  displayHeaderFooter: true,
-  format: "a4",
+  // displayHeaderFooter: true,
+  // format: "a4",
   printBackground: true,
-  margin: {
-    top: "100px",
-    bottom: "100px",
-    left: "0px",
-    right: "0px",
-  },
-  headerTemplate,
-  footerTemplate,
+  // margin: {
+  //   top: "100px",
+  //   bottom: "100px",
+  //   left: "0px",
+  //   right: "0px",
+  // },
+  // headerTemplate,
+  // footerTemplate,
+  preferCSSPageSize: true,
 };
 
 module.exports = async function (data, pdfOptions = {}) {
@@ -50,6 +51,8 @@ module.exports = async function (data, pdfOptions = {}) {
       timeout: 0,
       waitUntil: "networkidle0",
     });
+
+    await page.emulateMediaType("screen");
 
     data["pdf"] = await page.pdf({
       ...defaultPDFOptions,

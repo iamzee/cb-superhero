@@ -1,201 +1,247 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+
   <style>
+    @font-face {
+      font-family: "Gilroy";
+      src: url("{{fontBold}}");
+      font-weight: bold;
+    }
+
+    @font-face {
+      font-family: "Gilroy";
+      src: url("{{fontLight}}");
+      font-weight: lighter;
+    }
+
+    @page {
+      size: 595px 842px;
+      margin: 0;
+    }
+
+    @media screen {
+      .page {
+        page-break-after: always;
+      }
+    }
+
     * {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
 
-    body {
-      width: 100vw;
-      /* height: 100vh; */
-      overflow-x: hidden;
+    .page {
+      width: 595px;
+      height: 842px;
+      position: relative;
+      background: #fff;
     }
 
-    .bold {
-      font-weight: 600;
+    .image1 {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 121px;
+      height: 135px;
     }
 
-    .italic {
-      font-style: italic;
+    .image2 {
+      position: absolute;
+      left: 133px;
+      top: 35px;
+      width: 309px;
+      height: 130px;
+      z-index: 10;
+    }
+
+    .image3 {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      width: 164px;
+      height: 133px;
+    }
+
+    .image4 {
+      position: absolute;
+      width: 595px;
+      height: 32px;
+      left: 0px;
+      bottom: 0px;
+    }
+
+    .image5 {
+      position: absolute;
+      width: 55px;
+      height: 73px;
+      left: 0px;
+      top: 714px;
+    }
+
+    .image6 {
+      position: absolute;
+      width: 58px;
+      height: 107px;
+      left: 537px;
+      top: 664px;
+    }
+
+    .name {
+      position: absolute;
+      height: 17px;
+      left: 83px;
+      top: 221px;
+
+      font-family: "Gilroy";
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 17px;
+
+      color: #000000;
+    }
+
+    .date {
+      position: absolute;
+      height: 18px;
+      left: 456px;
+      top: 203px;
+
+      font-family: "Gilroy";
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 17px;
+      color: #000000;
+    }
+
+    .body1 {
+      position: absolute;
+      width: 443px;
+      height: 493px;
+      left: 83px;
+      top: 252px;
+
+      font-family: "Gilroy";
+      font-style: normal;
+      font-weight: lighter;
+      font-size: 12px;
+      line-height: 14px;
+
+      color: #000000;
+    }
+
+    .body2 {
+      position: absolute;
+      width: 464px;
+      height: 395px;
+      left: 73px;
+      top: 168px;
+
+      font-family: "Gilroy";
+      font-style: normal;
+      font-weight: lighter;
+      font-size: 12px;
+      line-height: 14px;
+
+      color: #000000;
     }
 
     .red {
-      color: #e74e4b;
+      color: #e01e1e;
+      font-weight: bold;
     }
 
-    .logo-container {
-      width: 100%;
-      padding-bottom: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo {
-      width: 200px;
-    }
-
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    h1 {
-      font-size: 38px;
-      text-transform: uppercase;
-      font-weight: bolder;
-      text-align: center;
-      color: #121212;
-      border-bottom: 2px solid #e74e4b;
-      padding-bottom: 12px;
-    }
-
-    h2 {
-      color: #e74e4b;
-      text-transform: uppercase;
-      font-size: 14px;
-      letter-spacing: 10px;
-      font-weight: 600;
-      padding-top: 18px;
-      padding-left: 12px;
-    }
-
-    .content {
-      max-width: 80%;
-      margin: 36px auto;
-    }
-
-    .content__header {
-      font-size: 16px;
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 26px;
-    }
-
-    .content__header--right {
-      text-align: right;
-    }
-
-    .section {
-      margin-bottom: 26px;
-      font-size: 15px;
-      line-height: 20px;
-    }
-
-    .section__header {
-      font-size: 18px;
-      font-weight: 600;
-      padding-bottom: 8px;
-    }
-
-    .disclaimer {
-      margin-top: 14px;
+    .bold {
+      font-weight: bold;
     }
   </style>
+
 </head>
 
 <body>
-  <div class="logo-container">
-    <img class="logo" src="https://minio.codingblocks.com/public/cblogo-black.png" />
+  <div class="page">
+    <img class="image1" src="{{image1}}" />
+    <img class="image2" src="{{image2}}" />
+    <img class="image3" src="{{image3}}" />
+    <span class="name">Hey {{firstName}}</span>
+    <span class="date">{{date}}</span>
+    <div class="body1">
+      Welcome to the Coding Blocks Family! As an organization of repute, our
+      missionis to train brains to become great coders! We have an awesome
+      team of super intelligent, highly passionate & energetic SuperHeroes,
+      whose mission to makeCoding Blocks grow each day, shine forever & be the
+      best always.<br /><br />
+      Should you choose to accept your mission, you will work as a Coding
+      Blocks <span class="red">Campus SuperHero</span>. You will receive Coding Blocks Goodies from us
+      when youwill complete your Roles & Responsibilities<br /></br />
+      <span class="bold">Perks and Benefits:</span><br />
+      1. LinkedIn Recommendations<br />
+      2. Exclusive Access to Webinars<br />
+      3. Cash Incentives<br />
+      4. Personalized Goodies (Based on Performance)<br />
+      5. Wildcraft Bags<br />
+      6. Pens & Diaries<br />
+      7. Stickers & sippers<br />
+      8. Get a chance to be featured on Coding Blocks Blog Publication.<br />
+      9. Special Discount on Coding Blocks Courses<br />
+      10. 90% OFF on our courses in SuperHero Birthday Month.<br />
+      11. As a part of Superhero Development Program, avail an
+      opportunity to get a career guidance from Coding Blocks Mentors.<br /><br />
+      <span class="bold">Roles and Responsibilities:</span><br />
+      1. Be the official Campus SuperHero and student representative of Coding Blocks in your college.<br />
+      2. Promote our courses and get excited incentives.<br />
+      3. Introduce your peers and host programming contests on Hacker Blocks (our online coding practice
+      platform).<br />
+      4. Maintain relevant databases and submit monthly reports.<br />
+      5. Conduct Coding Blocks Workshop/Webinars every month and programming events / online hackathon every 45 days in
+      your campus, so that it will be beneficial for students.<br />
+      6. Write technical/placement blogs on Coding Blocks Publication.<br />
+    </div>
+    <img class="image5" src="{{image5}}" />
+    <img class="image6" src="{{image6}}" />
+    <img class="image4" src="{{image4}}" />
   </div>
-  <div class="header">
-    <h1>You are a superhero</h1>
-    <h2>Welcome to coding blocks</h2>
-  </div>
-  <div class="content">
-    <div class="content__header">
-      <p>
-        Hey <span class="bold">{{firstName}}</span>,
-      </p>
-      <p class="content__header--right">{{date}}</p>
+  <div class="page">
+    <img class="image1" src="{{image1}}" />
+    <img class="image3" src="{{image3}}" />
+    <div class="body2">
+      7. Explore new ideas on how Coding Blocks can assist your college<br />
+      8. Introduce BOSS event of Coding Blocks in Tech Talks.<br />
+      9. Associate Coding Blocks with various college societies and tech-fest organizers.<br />
+      10. Start Coding Blocks Society in your college to engage students in technical workshop and help them in holistic
+      growth.<br />
+      11. Spread a word about YouTube Series of Coding Blocks Mentors.<br />
+      12. Any other community initiative will be rewarded as well.<br />
+      <br /><br />
+      <span class="bold">Rules:</span><br />
+      • Coding Blocks will review your performance every month and if you perform poorly for consecutive two months your
+      offer will be terminated.<br />
+      • Rewards will be dispatched based on your performance, end of the month.<br />
+      <br /><br />
+      <span class="bold">UNIQUE REFERRAL CODE</span><br />
+      Your SuperHero code/unique referral code are <span class="bold">{{onlineCourseRC}}</span> for Online Course, <span
+        class="bold">{{liveCourseRC}}</span> for LIVE course and <span class="bold">{{offlineCourseRC}}</span> for
+      Offline Course. You can
+      share this code with prospective students who want to join Coding Blocks. This code, upon usage by prospective new
+      students will give you the following benefits:<br />
+      <br /><br />
+      <span class="bold">Offline course</span> – Rs 500 to you and Rs 1000 off to the signed-up student.<br />
+      <br />
+      Note: This discount is not valid during sale or in conjunction with any special promotional event. Signed up
+      students cannot avail or redeem scholarship discount with the SuperHero Referral.
     </div>
-    <div class="section">
-      Welcome to the Coding Blocks Family! As an organization of repute, our mission is to train
-      brains to become great coders! We have an awesome team of super-intelligent, highly
-      passionate & energetic SuperHeroes, whose mission is to make Coding Blocks grow each day,
-      shine forever & be the best always.
-    </div>
-    <div class="section">
-      Should you choose to accept your mission, you will work as a Coding Blocks <span class="bold red">Campus
-        SuperHero</span>. You will receive Coding Blocks Goodies from us when you will complete your Roles
-      & Responsibilities
-    </div>
-    <div class="section">
-      <h3 class="section__header">Perks and Benefits</h3>
-      <ul>
-        <li>LinkedIn Recommendations</li>
-        <li>Exclusive Access to Webinars</li>
-        <li>Cash Incentives</li>
-        <li>Personalized Goodies (Based on Performance)</li>
-        <li>Wildcraft Bags</li>
-        <li>Pens & Diaries</li>
-        <li>Stickers & sippers</li>
-        <li>Get a chance to be featured on Coding Blocks Blog Publication.</li>
-        <li>Special Discount on Coding Blocks Courses</li>
-        <li>90% OFF on our courses in SuperHero Birthday Month</li>
-        <li>As a part of Superhero Development Program, avail an opportunity to get a career
-          guidance from Coding Blocks Mentors.</li>
-      </ul>
-    </div>
-    <div class="section">
-      <h3 class="section__header">Roles and Responsibilities</h3>
-      <ul>
-        <li>Be the official Campus SuperHero and student representative of Coding Blocks in your
-          college.</li>
-        <li>Promote our courses and get excited incentives.</li>
-        <li>Introduce your peers and host programming contests on Hacker Blocks (our online
-          coding practice platform).</li>
-        <li>Maintain relevant databases and submit monthly reports.</li>
-        <li>Conduct Coding Blocks Workshop/Webinars every month and programming events /
-          online hackathon every 45 days in your campus, so that it will be beneficial for
-          students.</li>
-        <li>Write technical/placement blogs on Coding Blocks Publication.</li>
-        <li>Explore new ideas on how Coding Blocks can assist your college.</li>
-        <li>Introduce BOSS event of Coding Blocks in Tech Talks.</li>
-        <li>Associate Coding Blocks with various college societies and tech-fest organizers.</li>
-        <li>Start Coding Blocks Society in your college to engage students in technical workshops
-          and help them in holistic growth.</li>
-        <li>Spread a word about the YouTube Series of Coding Blocks Mentors.</li>
-        <li>Any other community initiative will be rewarded as well.</li>
-      </ul>
-    </div>
-    <div class="section">
-      <h3 class="section__header">Rules</h3>
-      <ul>
-        <li>Coding Blocks will review your performance every month and if you perform poorly
-          for consecutive two months your offer will be terminated.</li>
-        <li>Rewards will be dispatched based on your performance at, end of the month.</li>
-      </ul>
-    </div>
-    <div class="section">
-      <h3 class="section__header">
-        Unique Referral Code
-      </h3>
-      Your SuperHero code/unique referral code is <span class="bold">{{onlineCourseRC}}</span> for Online Courses,
-      <span class="bold">{{liveCourseRC}}</span> for LIVE Courses, and <span class="bold">{{offlineCourseRC}}</span>
-      for Offline course and
-      you can share this code
-      with prospective students who want to join Coding Blocks. This code, upon usage by
-      prospective new students will give you the following benefits:
-      <ul>
-        <li>
-          Offline course – Rs 500 to you and Rs 500 off to the signed-up student.
-        </li>
-      </ul>
-      <p class="italic disclaimer">
-        Note: This discount is not valid during the sale or in conjunction with any special
-        promotional event. Signed-up students cannot avail of or redeem scholarship discounts with
-        the SuperHero Referral.
-      </p>
-    </div>
+    <img class="image5" src="{{image5}}" />
+    <img class="image6" src="{{image6}}" />
+    <img class="image4" src="{{image4}}" />
   </div>
 </body>
 
