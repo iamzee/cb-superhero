@@ -41,12 +41,12 @@ app.post("/api/send", async (req, res) => {
       date: `${getMonth(d.getMonth())} ${d.getDate()}, ${d.getFullYear()}`,
       fontLight: `${BASE_URL}/assets/fonts/Gilroy-Light.ttf`,
       fontBold: `${BASE_URL}/assets/fonts/Gilroy-ExtraBold.ttf`,
-      image1: `${BASE_URL}/assets/images/image1.svg`,
-      image2: `${BASE_URL}/assets/images/image2.svg`,
-      image3: `${BASE_URL}/assets/images/image3.svg`,
-      image4: `${BASE_URL}/assets/images/image4.svg`,
-      image5: `${BASE_URL}/assets/images/image5.svg`,
-      image6: `${BASE_URL}/assets/images/image6.svg`,
+      image1: `${BASE_URL}/assets/img/image1.png`,
+      image2: `${BASE_URL}/assets/img/image2.png`,
+      image3: `${BASE_URL}/assets/img/image3.png`,
+      image4: `${BASE_URL}/assets/img/image4.png`,
+      image5: `${BASE_URL}/assets/img/image5.png`,
+      image6: `${BASE_URL}/assets/img/image6.png`,
     });
 
     // generate PDF using puppeteer and add 'pdf' field to data object
