@@ -18,7 +18,7 @@ export default function UploadFromCsvModal({
   const [processing, setProcessing] = useState(false);
 
   function toCsv(csv) {
-    csv = csv.replaceAll("\r\n", "\n").replace("\r", "\n");
+    csv = csv.replaceAll("\r\n", "\n").replaceAll("\r", "\n");
 
     var lines = csv.split("\n");
 
