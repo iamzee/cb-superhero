@@ -87,7 +87,14 @@ export default function HomePage() {
   }
 
   return (
-    <Box sx={{ maxWidth: "1024px", margin: "auto", paddingTop: "24px" }}>
+    <Box
+      sx={{
+        maxWidth: "90%",
+        margin: "auto",
+        paddingTop: "24px",
+        paddingBottom: "24px",
+      }}
+    >
       <img
         src="/assets/cblogo-black.png"
         style={{ height: "64px", width: "auto", marginBottom: "32px" }}
