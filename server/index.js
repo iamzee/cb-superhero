@@ -67,7 +67,7 @@ app.post("/api/send", async (req, res) => {
       to: data.email,
       from: process.env.SENDER_EMAIL,
       cc: process.env.CC.split(","),
-      templateId: "d-bc54206283ad43ecb511f46bebbc2c86",
+      templateId: process.env.SENDGRID_TEMPLATE_ID,
       dynamicTemplateData: {
         subject: "OFFER LETTER - Welcome to Coding Blocks SuperHero Program 🎉",
         first_name: data["firstName"],
