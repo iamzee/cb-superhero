@@ -4,9 +4,13 @@ import axios from "axios";
 import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
 import Chip from "@mui/material/Chip";
+import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
 
 import SuperHeroList from "../components/SuperHeroList";
 import ActionButtons from "../components/ActionButtons";
+import Header from "../components/Header";
+import { isAuthenticated } from "../helpers/auth";
 
 function heroesReducer(state, action) {
   switch (action.type) {
@@ -95,45 +99,48 @@ export default function HomePage() {
         paddingBottom: "24px",
       }}
     >
-      <img
-        src="/assets/cblogo-black.png"
-        style={{ height: "64px", width: "auto", marginBottom: "32px" }}
-      />
-      <ActionButtons
-        heroes={heroes}
-        handleSendMail={handleSendMail}
-        appStatus={appStatus}
-        heroesDispatch={heroesDispatch}
-        handleSetAppStatus={handleSetAppStatus}
-      />
-      {appStatus === "SENDING" && (
-        <Alert severity="warning">
-          Do not refresh or close the browser while the process is running.
-        </Alert>
-      )}
-      {appStatus === "SENT" && (
-        <Alert severity="info">Clear all to send more emails.</Alert>
-      )}
-      {heroes.length === 0 ? (
-        <Box sx={{ width: "300px", height: "300px", margin: "auto" }}>
-          <img
-            src="/assets/empty.svg"
-            style={{ width: "100%", height: "100%" }}
-          />
-        </Box>
-      ) : (
+      <Header />
+      {isAuthenticated() && isAuthenticated().user.role === "admin" ? (
         <>
-          <Chip
-            label={`${heroes.length} Entries`}
-            color="info"
-            sx={{ margin: "16px 0px" }}
-          />
-          <SuperHeroList
-            list={heroes}
-            heroesDispatch={heroesDispatch}
+          <ActionButtons
+            heroes={heroes}
+            handleSendMail={handleSendMail}
             appStatus={appStatus}
+            heroesDispatch={heroesDispatch}
+            handleSetAppStatus={handleSetAppStatus}
           />
+          {appStatus === "SENDING" && (
+            <Alert severity="warning">
+              Do not refresh or close the browser while the process is running.
+            </Alert>
+          )}
+          {appStatus === "SENT" && (
+            <Alert severity="info">Clear all to send more emails.</Alert>
+          )}
+          {heroes.length === 0 ? (
+            <Box sx={{ width: "300px", height: "300px", margin: "auto" }}>
+              <img
+                src="/assets/empty.svg"
+                style={{ width: "100%", height: "100%" }}
+              />
+            </Box>
+          ) : (
+            <>
+              <Chip
+                label={`${heroes.length} Entries`}
+                color="info"
+                sx={{ margin: "16px 0px" }}
+              />
+              <SuperHeroList
+                list={heroes}
+                heroesDispatch={heroesDispatch}
+                appStatus={appStatus}
+              />
+            </>
+          )}
         </>
+      ) : (
+        <Alert severity="error">Unauthorised</Alert>
       )}
     </Box>
   );
